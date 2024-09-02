@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "g:\\CS\\NandToTetris_Coursera\\nand2tetris\\projects\\08\\VMTranslator",
+      "environment": [],
+      "program": "g:\\CS\\NandToTetris_Coursera\\nand2tetris\\projects\\08\\VMTranslator\\build\\Debug\\outDebug",
+      "internalConsoleOptions": "openOnSessionStart",
+      "MIMode": "gdb",
+      "miDebuggerPath": "C:\\mingw64\\bin\\gdb.exe",
+      "externalConsole": false
+    }
+  ]
+}
