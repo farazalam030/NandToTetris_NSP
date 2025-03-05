@@ -65,10 +65,10 @@ void CodeWriter::writePushPop(string cmd, string segment, int index)
 
 void CodeWriter::close()
 {
-	string endCode = "// Infinite Loop \n";
-	endCode = "(END) \n";
-	endCode += "@END \n";
-	endCode += "0 ; JMP \n";
+	string endCode = "// Infinite Loop\n";
+	endCode = "(END)\n";
+	endCode += "@END\n";
+	endCode += "0 ; JMP\n";
 
 	asmFile << endCode;
 
@@ -194,11 +194,11 @@ string CodeWriter::i_to_ptr(string ptr, string i)
 {
 	string code = "";
 	// [ *SP = i]
-	code += "@" + i + " \n";   // @i
-	code += "D = A \n";		   // D = A
-	code += "@" + ptr + " \n"; // @ptr
-	code += "A = M \n";		   // A = M
-	code += "M = D \n";		   // M = D
+	code += "@" + i + "\n";	  // @i
+	code += "D = A\n";		  // D = A
+	code += "@" + ptr + "\n"; // @ptr
+	code += "A = M\n";		  // A = M
+	code += "M = D\n";		  // M = D
 
 	return code;
 }
@@ -208,12 +208,12 @@ string CodeWriter::ptr_to_ptr(string ptr1, string ptr2)
 {
 	string code = "";
 	// [ *SP = *addr]
-	code += "@" + ptr2 + " \n"; // @ptr2
-	code += "A = M \n";			// A = M
-	code += "D = M \n";			// D = M
-	code += "@" + ptr1 + " \n"; // @ptr1
-	code += "A = M \n";			// A = M
-	code += "M = D \n";			// M = D
+	code += "@" + ptr2 + "\n"; // @ptr2
+	code += "A = M\n";		   // A = M
+	code += "D = M\n";		   // D = M
+	code += "@" + ptr1 + "\n"; // @ptr1
+	code += "A = M\n";		   // A = M
+	code += "M = D\n";		   // M = D
 
 	return code;
 }
@@ -223,11 +223,11 @@ string CodeWriter::vrb_to_ptr(string ptr, string vrb)
 {
 	string code = "";
 	// [ *sp = Foo.i ]
-	code += "@" + vrb + " \n"; // @vrb
-	code += "D = M \n";		   // D = M
-	code += "@" + ptr + " \n"; // @ptr
-	code += "A = M \n";		   // A = M
-	code += "M = D \n";		   // M = D
+	code += "@" + vrb + "\n"; // @vrb
+	code += "D = M\n";		  // D = M
+	code += "@" + ptr + "\n"; // @ptr
+	code += "A = M\n";		  // A = M
+	code += "M = D\n";		  // M = D
 
 	return code;
 }
@@ -237,11 +237,11 @@ string CodeWriter::ptr_to_vrb(string vrb, string ptr)
 {
 	string code = "";
 	// [ Foo.i = *SP]
-	code += "@" + ptr + " \n"; // @ptr
-	code += "A = M \n";		   // A = M
-	code += "D = M \n";		   // D = M
-	code += "@" + vrb + " \n"; // @vrb
-	code += "M = D \n";		   // M = D
+	code += "@" + ptr + "\n"; // @ptr
+	code += "A = M\n";		  // A = M
+	code += "D = M\n";		  // D = M
+	code += "@" + vrb + "\n"; // @vrb
+	code += "M = D\n";		  // M = D
 
 	return code;
 }
@@ -251,11 +251,11 @@ string CodeWriter::inc_or_dcr_vrb(string vrb, bool inc)
 {
 	string code = "";
 	// sp++ or sp--
-	code += "@" + vrb + " \n"; // @vrb
+	code += "@" + vrb + "\n"; // @vrb
 	if (inc)
-		code += "M = M + 1 \n"; // M = M + 1
+		code += "M = M + 1\n"; // M = M + 1
 	else
-		code += "M = M - 1 \n"; // M = M - 1
+		code += "M = M - 1\n"; // M = M - 1
 
 	return code;
 }
@@ -265,19 +265,19 @@ string CodeWriter::i_th_segment(string dest, string segment, string i)
 {
 	string code = "";
 	// [ addr = LCL + i]
-	code += "@" + i + " \n";	   // @i
-	code += "D = A \n";			   // D = A
-	code += "@" + segment + " \n"; // @5 or @LCL
+	code += "@" + i + "\n";		  // @i
+	code += "D = A\n";			  // D = A
+	code += "@" + segment + "\n"; // @5 or @LCL
 	if (segment == "5")
-	{							// for [ addr = 5 + i ]
-		code += "D = D + A \n"; // D = D + A
+	{						   // for [ addr = 5 + i ]
+		code += "D = D + A\n"; // D = D + A
 	}
 	else
-	{							// for [ addr = LCL + i ]
-		code += "D = D + M \n"; // D = D + M
+	{						   // for [ addr = LCL + i ]
+		code += "D = D + M\n"; // D = D + M
 	}
-	code += "@" + dest + " \n"; // @addr
-	code += "M = D \n";			// M = D
+	code += "@" + dest + "\n"; // @addr
+	code += "M = D\n";		   // M = D
 
 	return code;
 }
@@ -287,22 +287,22 @@ string CodeWriter::arithmetic_logical(string opr)
 {
 	string asmCode = "";
 	asmCode += inc_or_dcr_vrb(SP, DCR); // SP--
-	asmCode += "A = M \n";				// A = M
-	asmCode += "D = M \n";				// D = M
+	asmCode += "A = M\n";				// A = M
+	asmCode += "D = M\n";				// D = M
 	asmCode += inc_or_dcr_vrb(SP, DCR); // SP--
-	asmCode += "A = M \n";				// A = M
+	asmCode += "A = M\n";				// A = M
 	if (opr == "add")
-		asmCode += "D = D + M \n"; // D = D + M   	------ addition
+		asmCode += "D = D + M\n"; // D = D + M   	------ addition
 	else if (opr == "sub")
 	{
-		asmCode += "D = D - M \n"; // D = D - M   	d = y-x
-		asmCode += "D = -D \n";	   // D = -D		-d = x-y ------ subtraction
+		asmCode += "D = D - M\n"; // D = D - M   	d = y-x
+		asmCode += "D = -D\n";	  // D = -D		-d = x-y ------ subtraction
 	}
 	else if (opr == "and")
-		asmCode += "D = D & M \n"; // D = D & M   	------ and
+		asmCode += "D = D & M\n"; // D = D & M   	------ and
 	else
-		asmCode += "D = D | M \n";		// D = D | M   	------ or
-	asmCode += "M = D \n";				// M = D 		------ saving back to stack
+		asmCode += "D = D | M\n";		// D = D | M   	------ or
+	asmCode += "M = D\n";				// M = D 		------ saving back to stack
 	asmCode += inc_or_dcr_vrb(SP, INC); // SP++
 
 	return asmCode;
@@ -313,12 +313,12 @@ string CodeWriter::neg_or_not(string opr)
 {
 	string asmCode = "";
 	asmCode += inc_or_dcr_vrb(SP, DCR); // SP--
-	asmCode += "A = M \n";				// A = M
-	asmCode += "D = M \n";				// D = M
+	asmCode += "A = M\n";				// A = M
+	asmCode += "D = M\n";				// D = M
 	if (opr == "neg")
-		asmCode += "M = -D \n"; // M = -D		neg
+		asmCode += "M = -D\n"; // M = -D		neg
 	else
-		asmCode += "M = !D \n";			// M = !D		not
+		asmCode += "M = !D\n";			// M = !D		not
 	asmCode += inc_or_dcr_vrb(SP, INC); // SP++
 
 	return asmCode;
@@ -340,22 +340,22 @@ string CodeWriter::comparision(string cmp)
 		jmp = "JLT"; // gt
 
 	asmCode += inc_or_dcr_vrb(SP, DCR); // SP--
-	asmCode += "A = M \n";				// A = M
-	asmCode += "D = M \n";				// D = M
+	asmCode += "A = M\n";				// A = M
+	asmCode += "D = M\n";				// D = M
 	asmCode += inc_or_dcr_vrb(SP, DCR); // SP--
-	asmCode += "A = M \n";				// A = M
-	asmCode += "D = D - M \n";			// D = D - M
+	asmCode += "A = M\n";				// A = M
+	asmCode += "D = D - M\n";			// D = D - M
 	asmCode += "@" + label_t + "\n";	// @TRUE			true== 0, false = -1
-	asmCode += "D ; " + jmp + " \n";	// D ; JEQ/JGT/JLT
-	asmCode += "D = 0 \n";				// D = -1
+	asmCode += "D ; " + jmp + "\n";		// D ; JEQ/JGT/JLT
+	asmCode += "D = 0\n";				// D = -1
 	asmCode += "@" + label_f + "\n";	// @FALSE
-	asmCode += "0 ; JMP \n";			// 0 ; JMP
-	asmCode += "(" + label_t + ") \n";	// (TRUE)
-	asmCode += "D = -1 \n";				// D = 0
-	asmCode += "(" + label_f + ") \n";	// (FALSE)
-	asmCode += "@SP \n";				// @SP
-	asmCode += "A = M \n";				// A = M
-	asmCode += "M = D \n";				// M = D
+	asmCode += "0 ; JMP\n";				// 0 ; JMP
+	asmCode += "(" + label_t + ")\n";	// (TRUE)
+	asmCode += "D = -1\n";				// D = 0
+	asmCode += "(" + label_f + ")\n";	// (FALSE)
+	asmCode += "@SP\n";					// @SP
+	asmCode += "A = M\n";				// A = M
+	asmCode += "M = D\n";				// M = D
 	asmCode += inc_or_dcr_vrb(SP, INC); // SP++
 
 	return asmCode;
