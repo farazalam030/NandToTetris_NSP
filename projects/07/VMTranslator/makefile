@@ -1,14 +1,14 @@
 VMTranslator: main.o Parser.o CodeWriter.o
-	g++ main.o Parser.o CodeWriter.o -o VMTranslator;
+	g++ -std=c++2a main.o Parser.o CodeWriter.o -o VMTranslator.o;
 
 main.o: main.cpp
-	g++ -c main.cpp
+	g++ -std=c++2a -c main.cpp
 
 Parser.o: Parser.cpp Parser.h
-	g++ -c Parser.cpp
+	g++ -std=c++2a -c Parser.cpp
 
 CodeWriter.o: CodeWriter.cpp CodeWriter.h
-	g++ -c CodeWriter.cpp
+	g++ -std=c++2a -c CodeWriter.cpp
 
 clean:
-	rm *.o
+	rm *.o *.exe *.out *.exe.*
