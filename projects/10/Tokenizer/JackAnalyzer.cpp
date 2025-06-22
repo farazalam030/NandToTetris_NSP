@@ -1,5 +1,5 @@
 #include "JackTokenizer.h"
-#include "JackTokenizer.cpp"
+// #include "JackTokenizer.cpp"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 			else
 			{
 				JackTokenizer JT(filename);
-				string outputFile = filename.substr(0,dotJack) + "T.xml";
+				string outputFile = filename.substr(0,dotJack) + "T_cmp.xml";
 				ofstream fout(outputFile.c_str());
 				fout << "<tokens>" << endl;
 				while(JT.hasMoreTokens())
