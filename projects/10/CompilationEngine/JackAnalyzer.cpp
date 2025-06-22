@@ -1,7 +1,4 @@
-#include "JackTokenizer.h"
-#include "JackTokenizer.cpp"
 #include "CompilationEngine.h"
-#include "CompilationEngine.cpp"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -26,7 +23,7 @@ int main(int argc, char *argv[])
 				JackTokenizer JT(filename);
 				string outputFile = filename.substr(0,dotJack) + ".xml";
 				CompilationEngine CE(&JT,outputFile);
-				
+
 				/*while(JT.hasMoreTokens())
 				{
 					JT.advance();
