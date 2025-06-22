@@ -2,6 +2,7 @@
 #include <fstream>
 #include <filesystem>
 #include <string>
+// #include "JackTokenizer.h"
 #include "CompilationEngine.h"
 
 using namespace std;
@@ -76,8 +77,8 @@ void generateTokenFile(fs::path jackfile) {
 
 	// ofstream xmlFile(jackfile.replace_extension(".xml").string());
 	cout << "=======================================================================================" << endl;
-	string ipfile = jackfile.string()+"faraz";
-	string opfile = jackfile.replace_extension(".xml").string()+"faraz";
+	string ipfile = jackfile.string();
+	string opfile = jackfile.replace_extension(".xml").string();
 	cout << ipfile << endl;
 	cout << opfile << endl;
 
