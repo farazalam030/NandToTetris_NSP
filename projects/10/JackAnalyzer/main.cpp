@@ -16,9 +16,9 @@ bool debug = true;
 int main(int argc, char** argv) {
 
 	string jackfile = "../ArrayTest";
-	
+
 	if(argc > 1) jackfile = argv[1];
-	if(argc > 2) debug = (argv[2][0] == '1'); 
+	if(argc > 2) debug = (argv[2][0] == '1');
 
 	fs::path jack_path(jackfile);
 	fs::path d_path;
@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
 		else {
 			d_path = jack_path.parent_path();
 		}
-		xml_path = d_path; 
+		xml_path = d_path;
 		xml_path /= xml_path.stem().string()+".xml";
 	}
 	else {
@@ -48,10 +48,10 @@ int main(int argc, char** argv) {
 	cout << "d_path: " << d_path.string() << endl;
 	cout << "xml_path: " << xml_path.string() << endl << endl;
 
-	// JackTokenizer and code writer 
-	
+	// JackTokenizer and code writer
+
 	// CodeWriter codeWriter(fs::absolute(xml_path).string());
-	
+
 	if(fs::is_directory(jack_path)) {
 		for(auto file : fs::directory_iterator(d_path)) {
 			if(debug) cout << "----------------------------------------------------------------------------" << endl;
@@ -76,8 +76,8 @@ void generateTokenFile(fs::path jackfile) {
 
 	// ofstream xmlFile(jackfile.replace_extension(".xml").string());
 	cout << "=======================================================================================" << endl;
-	string ipfile = jackfile.string();
-	string opfile = jackfile.replace_extension(".xml").string();
+	string ipfile = jackfile.string()+"faraz";
+	string opfile = jackfile.replace_extension(".xml").string()+"faraz";
 	cout << ipfile << endl;
 	cout << opfile << endl;
 
@@ -87,7 +87,7 @@ void generateTokenFile(fs::path jackfile) {
 
 	// while(jack_tokenizer.hasMoreTokens()) {
 	// 	jack_tokenizer.advance();
-		
+
 	// 	switch (jack_tokenizer.tokenType())
 	// 	{
 	// 		case KEYWORD: {
@@ -110,17 +110,17 @@ void generateTokenFile(fs::path jackfile) {
 	// 				xmlFile << "<identifier>" << jack_tokenizer.identifier() << "</identifier>" << endl;
 	// 				}
 	// 			break;
-			
+
 	// 		case INT_CONST: {
 	// 				xmlFile << "<integerConstant>" << jack_tokenizer.intaVal() << "</integerConstant>" << endl;
 	// 				}
 	// 			break;
-			
+
 	// 		case STRING_CONST: {
 	// 				xmlFile << "<stringConstant>" << jack_tokenizer.stringVal() << "</stringConstant>" << endl;
 	// 				}
 	// 			break;
-		
+
 	// 		default:
 	// 			break;
 	// 	}

@@ -14,7 +14,7 @@ CompilationEngine.o: CompilationEngine.cpp CompilationEngine.h
 # 	g++ -c CodeWriter.cpp
 
 clean:
-	rm *.o
+	rm *.o *.exe
 
 test_all: Parser
 	.\Parser.exe ..\ArrayTest
